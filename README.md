@@ -1,3 +1,7 @@
+<div align="center">
+  <img src="assets/1795246726604.jpg" width="128" alt="cui-skills">
+</div>
+
 # cui-skills
 
 Four agent skills for building UIs with [CUI](https://github.com/yappologistic/CUI) — one visual language across **C**, **WebAssembly**, **Python** and **plain CSS**, written from real build and test sessions (Windows and Linux), not from reading docs alone.
