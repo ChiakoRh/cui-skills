@@ -156,7 +156,7 @@ Copy (or symlink) the four skill folders into your agent's skills directory:
 |---|---|
 | OpenCode | `~/.config/opencode/skills/` |
 | Claude Code | `~/.claude/skills/` |
-| Codex / others | via [skills-manager](https://github.com) or any directory your agent reads skills from |
+| Codex / others | via a skill manager such as `skills-manager-cli`, or any directory your agent reads skills from |
 
 The files are plain Markdown — any agent that can follow instructions can use them even outside these formats.
 
