@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CUI style — example</title>
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="components.css">
+<style>
+  body { max-width: 880px; margin: 0 auto; padding: 48px 24px; }
+  .hero { padding: 40px 0 28px; }
+  .hero h1 { font-size: 46px; letter-spacing: -0.034em; margin: 0 0 6px; }
+  .hero h1 .line2 { color: var(--accent-red); }
+  .lede { color: var(--text-2); font-size: 15.5px; line-height: 1.55; max-width: 520px; margin: 14px 0 20px; }
+  .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+  section { margin: 44px 0; }
+  section h2 { font-size: 30px; letter-spacing: -0.03em; margin: 0 0 4px; }
+  section .sub { color: var(--text-2); font-size: 15px; margin: 0 0 18px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+  .metric { flex: 1; min-width: 150px; }
+  .metric .label { font-size: 13px; color: var(--text-2); }
+  .metric .value { font-size: 34px; letter-spacing: -1.1px; margin-top: 26px; }
+  .metric .icon { width: 34px; height: 34px; border-radius: 10px; background: var(--surface-muted); border: 1px solid var(--border); margin-bottom: 16px; }
+  .theme-toggle { position: fixed; top: 16px; right: 16px; }
+  .bar { height: 8px; border-radius: 4px; background: var(--border-subtle); overflow: hidden; display: flex; margin: 18px 0 10px; }
+  .bar span { height: 100%; }
+  footer { margin-top: 60px; padding: 40px 24px; text-align: center; border-top: 1px solid var(--border); position: relative; }
+  footer .thanks { font-size: 28px; letter-spacing: -0.03em; position: relative; }
+</style>
+</head>
+<body>
+  <button class="btn btn-secondary theme-toggle" onclick="toggleTheme()">Toggle theme</button>
+
+  <!-- hero: badge, word-blur headline, lede, command pill -->
+  <header class="hero">
+    <div class="badge rise"><span class="dot"></span>yourhandle <span class="sep">·</span> open source</div>
+    <h1 style="margin-top:22px" class="rise">
+      <span class="word" style="animation-delay:.15s">Small</span>
+      <span class="word" style="animation-delay:.22s">tools</span>
+      <span class="word" style="animation-delay:.29s">for</span><br>
+      <span class="line2"><span class="word" style="animation-delay:.36s">the</span> <span class="word" style="animation-delay:.43s">terminal.</span></span>
+    </h1>
+    <p class="lede rise" style="animation-delay:.5s">
+      Developer. Small tools and dashboards.
+    </p>
+    <div class="cmd rise" style="animation-delay:.62s">$ <b>gh repo list yourhandle --source</b></div>
+  </header>
+
+  <!-- metrics -->
+  <section>
+    <div class="row">
+      <div class="card metric rise" style="animation-delay:.0s"><div class="icon"></div><div class="label">Stars earned</div><div class="value">15</div></div>
+      <div class="card metric rise" style="animation-delay:.06s"><div class="icon"></div><div class="label">Contributions this year</div><div class="value">—</div></div>
+      <div class="card metric rise" style="animation-delay:.12s"><div class="icon"></div><div class="label">Followers</div><div class="value">12</div></div>
+      <div class="card metric rise" style="animation-delay:.18s"><div class="icon"></div><div class="label">Public projects</div><div class="value">6</div></div>
+    </div>
+  </section>
+
+  <!-- project cards -->
+  <section>
+    <h2 class="rise">Featured projects</h2>
+    <p class="sub rise" style="animation-delay:.1s">The picks people actually use.</p>
+    <div class="grid">
+      <div class="card rise">
+        <h3 style="margin:0 0 8px">web-toolkit</h3>
+        <p class="text-2" style="font-size:13.5px;margin:0 0 14px">Dashboard frontends and networking helpers.</p>
+        <div class="row"><span class="chip">Python</span><span class="chip">Updated 2026</span></div>
+      </div>
+      <div class="card rise" style="animation-delay:.08s">
+        <h3 style="margin:0 0 8px">scan-tool</h3>
+        <p class="text-2" style="font-size:13.5px;margin:0 0 14px">Scanner and health checks for self-hosted panels.</p>
+        <div class="row"><span class="chip">Go</span><span class="chip">Updated 2026</span></div>
+      </div>
+      <div class="card rise" style="animation-delay:.16s">
+        <h3 style="margin:0 0 8px">dash-kit</h3>
+        <p class="text-2" style="font-size:13.5px;margin:0 0 14px">Small dashboard utilities and experiments.</p>
+        <div class="row"><span class="chip">JavaScript</span><span class="chip">Updated 2026</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- languages bar -->
+  <section>
+    <div class="card rise">
+      <h3 style="margin:0 0 2px">Languages</h3>
+      <p class="text-2" style="font-size:13px;margin:0">By bytes of code across my public projects</p>
+      <div class="bar grow" style="animation-delay:.3s">
+        <span style="width:44%;background:var(--accent-red)"></span>
+        <span style="width:23%;background:var(--accent-gold)"></span>
+        <span style="width:18%;background:var(--fg)"></span>
+        <span style="width:15%;background:var(--text-3)"></span>
+      </div>
+      <div class="row" style="font-size:13px">
+        <span>● <b style="font-weight:400">Python</b> <span class="text-3">44.2%</span></span>
+        <span>● <b style="font-weight:400">Go</b> <span class="text-3">23.1%</span></span>
+        <span>● <b style="font-weight:400">JavaScript</b> <span class="text-3">18.0%</span></span>
+        <span>● <b style="font-weight:400">Other</b> <span class="text-3">14.7%</span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- buttons -->
+  <section>
+    <div class="row">
+      <a class="btn btn-primary rise" href="#">Browse projects →</a>
+      <a class="btn btn-secondary rise" style="animation-delay:.08s" href="#">Telegram ✈</a>
+    </div>
+  </section>
+
+  <!-- footer: quiet thanks over a sunk surface -->
+  <footer>
+    <div class="thanks"><span class="word" style="animation-delay:.2s">Thanks</span> <span class="word" style="animation-delay:.27s">for</span> <span class="word" style="animation-delay:.34s">stopping</span> <span class="word" style="animation-delay:.41s">by.</span></div>
+  </footer>
+
+<script>
+function toggleTheme() {
+  const h = document.documentElement;
+  h.dataset.theme = h.dataset.theme === 'dark' ? 'light' : 'dark';
+}
+</script>
+</body>
+</html>
