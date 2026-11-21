@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="assets/1795246726604.jpg" width="128" alt="cui-skills" style="border-radius: 224px;">
+  <img src="assets/logo.svg" width="128" alt="cui-skills">
 </div>
 
 # cui-skills
