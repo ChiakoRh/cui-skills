@@ -23,7 +23,18 @@ the others cover their own layer and point back to it.
 | `cui-py` | Python 3.9+ (`pip install nexa-ui`); a C compiler only when building from source | nexa (optional, for dev) |
 | `cui-style` | nothing — a browser | no |
 
-## Setup (for AI agents)
+## Setup
+
+Two ways:
+
+- **Slash command:** copy `commands/cui-setup.md` into your agent's
+  command directory (OpenCode: `~/.config/opencode/command/`), then run
+  `/cui-setup`. The agent asks which branch you need, installs only that
+  chain, clones the projects and records paths in `paths.json`.
+- **Ask your agent directly:** say "set up the CUI skills" — the flow
+  below is written for agents to follow.
+
+### The flow (for AI agents)
 
 When a user asks to set up these skills, follow this flow. **Only install
 what the skills they actually need require** — ask first which of the four
