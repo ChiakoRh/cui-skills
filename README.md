@@ -4,7 +4,7 @@ Four agent skills for building UIs with [CUI](https://github.com/yappologistic/C
 
 - **~210 native components** in C99, zero dependencies, ~250 KB apps — see `cui-app`
 - **The same C app in the browser** with plain clang + `wasm32`, no Emscripten — see `cui-web`
-- **Desktop apps in Python** via [nexa](https://github.com/x017/nexa), the official CUI port — see `cui-py`
+- **Desktop apps in Python** via [nexa](https://github.com/x017/nexa), the CUI port — see `cui-py`
 - **The CUI look in HTML/CSS** for sites and web UIs without any C — see `cui-style`
 
 ## Contents
@@ -57,7 +57,7 @@ The web layer only: the same C codebase compiled to WebAssembly with plain clang
 
 ### cui-py — desktop apps in Python (nexa)
 
-[nexa](https://github.com/x017/nexa) (`pip install nexa-ui`) is the official Python port of CUI: same components, same tokens, zero Python dependencies.
+[nexa](https://github.com/x017/nexa) (`pip install nexa-ui`) is the Python port of CUI: same components, same tokens, zero Python dependencies.
 
 **Contains:**
 
