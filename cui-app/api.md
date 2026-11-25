@@ -15,7 +15,16 @@ Input injection (custom platforms/tests): `cui_input_mouse_*`,
 `cui_dropped_file*`. Clipboard: `cui_set_clipboard_text` /
 `cui_get_clipboard_text`. Keys: `cui_shortcut(mods, key)`,
 `cui_key_pressed`, `cui_key_down`, `cui_wants_keyboard` (false while a text
-field is focused). App layer lives in `cui_app.h`: `cui_app_run`,
+field is focused). Input routing (custom event sources: a browser, a
+headless test): `cui_set_input_hook(ui, hook, user)` (intercept before the
+normal handler), `cui_dispatch_input(ui, event, route, user)` (deliver a
+`cui_input_event`; `route` decides which widget gets it), `cui_input_repeated`
+(key is an auto-repeat), `cui_key_action_down(ui, key)` (held). Cursor over
+custom areas: `cui_set_cursor(ui, cui_cursor_*)`. Focus scope (modal-ish
+widgets that must not leak focus outside): `cui_push_focus_scope(ui, id,
+active)` / `cui_pop_focus_scope(ui)`; queries: `cui_focused_id`,
+`cui_request_component_focus`, `cui_component_has_input`,
+`cui_window_focused`, `cui_focus_visible`. App layer lives in `cui_app.h`: `cui_app_run`,
 `cui_app_create`, `cui_app_frame`, `cui_app_ui`, `cui_app_file_dialog`,
 `cui_app_open_url`, `cui_app_follow_system_theme`. Window state (v1.4+):
 `cui_app_maximize(app)` (NULL = running app), `cui_app_minimize`,
@@ -114,7 +123,8 @@ bool. `cui_sheet(title, &open, .side = CUI_SIDE_LEFT, .size)` (drawer),
 
 `cui_table(columns) { cui_table_row(selected) { cui_table_cell_text(...) } }`,
 `cui_data_grid` (editable cells: `cui_data_grid_cell_edit`),
-`cui_tree_table` (sortable via `cui_tree_sort`), `cui_kanban` (columns/cards
+`cui_tree_table` (sortable via `cui_tree_sort`, move/reorder rows via
+`cui_tree_move`), `cui_kanban` (columns/cards
 begin-end pairs; `cui_kanban_end` returns the move), `cui_filter_bar`,
 `cui_path_bar`, `cui_file_browser`, `cui_file_picker`,
 `cui_inspector` + `cui_prop_float/int/text/bool/enum/color/vec`,
@@ -133,7 +143,8 @@ begin-end pairs; `cui_kanban_end` returns the move), `cui_filter_bar`,
 
 ## Media
 
-`cui_image_create/load/destroy`, `cui_image(tex)`, `cui_image_viewer`
+`cui_image_create/load/destroy`, `cui_image_update` (sub-rectangle RGBA
+update without reloading), `cui_image(tex)`, `cui_image_viewer`
 (pan/zoom), `cui_cropper`, `cui_carousel`, `cui_image_compare`
 (before/after slider), `cui_card_stack`, `cui_now_playing`, `cui_waveform`,
 `cui_voice_orb`, `cui_voice_wave`, `cui_voice_note`, `cui_voice_session`,
@@ -181,7 +192,8 @@ Inside any container: `cui_draw_rect(_border/_gradient)`, `cui_draw_shadow`,
 `cui_draw_arc`, `cui_draw_text`, `cui_draw_icon`, `cui_draw_image`,
 `cui_push_clip`/`cui_pop_clip`. Stateful custom widgets: `cui_canvas(id, w,
 h, paint_fn, user)` + `cui_state(id, size)` (persists between frames) +
-`cui_animate(id, target)` / `cui_animate_spring`. Wheel input for custom
+`cui_canvas_ex(id, w, h, paint_fn, user, user_size, &opts)` (canvas with
+`cui_canvas_opts`) + `cui_animate(id, target)` / `cui_animate_spring`. Wheel input for custom
 regions: `cui_wheel_region(ui, id, rect)` + `cui_wheel_take(ui, id, &delta)`
 (opt-in, so page scroll and canvas zoom coexist). Node editor:
 `cui_node_editor` + `cui_node_begin/end`, pins, `cui_node_link`, events for
