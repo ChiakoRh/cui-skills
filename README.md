@@ -122,7 +122,7 @@ Two ways:
 1. **Slash command** — copy [`commands/cui-setup.md`](commands/cui-setup.md) into your agent's command directory (OpenCode: `~/.config/opencode/command/`), then run `/cui-setup`.
 2. **Ask your agent directly** — say "set up the CUI skills"; the flow below is written for agents to follow.
 
-Or, without an agent, the bundled setup script (checks tools, clones the projects, writes `paths.json`, installs the skills into detected agent directories):
+Or, without an agent, the bundled setup script (checks tools, clones the projects, writes `paths.json`, then installs the skills through `npx skills add` so installs are counted on skills.sh):
 
 ```sh
 npx github:ChiakoRh/cui-skills        # or: git clone … && node setup.mjs

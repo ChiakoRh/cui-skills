@@ -3,7 +3,7 @@
 // projects, writes paths.json, installs the skills into detected agents.
 // Run: npx github:ChiakoRh/cui-skills   or   node setup.mjs (after clone)
 import { execSync } from "node:child_process";
-import { existsSync, mkdirSync, cpSync, writeFileSync, readFileSync } from "node:fs";
+import { existsSync, mkdirSync, writeFileSync, readFileSync } from "node:fs";
 import { homedir } from "node:os";
 import { join, dirname } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -60,29 +60,12 @@ const paths = { cui_clone: cuiClone, nexa_clone: null };
 writeFileSync(join(root, "paths.json"), JSON.stringify(paths, null, 2) + "\n");
 console.log("paths.json written.");
 
-// 5. Install skills into every agent dir that exists
-const skillDirs = branches.map((b) => `cui-${b === "app" ? "app" : b}`);
-const agentHomes = {
-  opencode: join(homedir(), ".config", "opencode", "skills"),
-  claude: join(homedir(), ".claude", "skills"),
-  codex: join(homedir(), ".codex", "skills"),
-  cursor: join(homedir(), ".cursor", "skills"),
-  "github-copilot": join(homedir(), ".config", "github-copilot", "skills"),
-};
-let installed = 0;
-for (const [agent, dir] of Object.entries(agentHomes)) {
-  if (!existsSync(dirname(dir))) continue; // agent not present on this machine
-  for (const s of skillDirs) {
-    const src = join(root, s);
-    const dst = join(dir, s);
-    if (!existsSync(src)) continue;
-    if (existsSync(dst)) { console.log(`${s} already in ${agent} - skipped (delete it first to reinstall)`); continue; }
-    mkdirSync(dir, { recursive: true });
-    cpSync(src, dst, { recursive: true });
-  }
-  installed++; console.log(`skills -> ${agent}: ${dir}`);
-}
-if (!installed) console.log("No agent dir found - copy the skill folders manually (see README).");
+// 5. Install through the skills CLI (same as `npx skills add` — gets telemetry)
+const valid = branches.map((b) => `cui-${b}`).filter((n) => ["cui-app", "cui-web", "cui-py", "cui-style"].includes(n));
+if (valid.length) {
+  try { run(`npx -y skills add ChiakoRh/cui-skills --skill ${valid.join(" ")} -y`); }
+  catch { console.log("skills CLI failed - install manually: npx skills add ChiakoRh/cui-skills"); }
+} else console.log("No valid skills selected (app, web, py, style).");
 
 // 6. Verify
 console.log("\n=== Verify ===");
