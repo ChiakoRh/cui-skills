@@ -31,7 +31,7 @@ paths to the OS. Do **not** install anything the chosen skills don't need.
    ```
    Put them where the user wants (suggest `~/Git/CUI`, `~/Git/nexa`).
 5. **Record the clone paths** in `paths.json` at the root of this skill
-   suite (replace `"null"` values with the absolute paths).
+   suite (create the file if missing; use the JSON shape from the README).
 6. **Install the skills themselves** into the agent's skills directory if
    not already there (OpenCode: `~/.config/opencode/skills/`).
 7. **Verify** one cheap check per branch:

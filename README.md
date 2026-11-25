@@ -133,7 +133,7 @@ Two ways:
    git clone https://github.com/x017/nexa.git           # cui-py development only
    ```
    For `cui-py` alone, `pip install nexa-ui` is enough — no clone needed.
-5. **Record the paths** in [`paths.json`](paths.json) (see below).
+5. **Record the paths** in `paths.json` at the repo root (see below).
 6. **Install the skills** into the agent's skills directory if not already there.
 7. **Verify** one cheap check per branch — configure the template (`cui-app`), `clang --print-targets | grep wasm32` (`cui-web`), `python -c "import nexa"` (`cui-py`); `cui-style` needs nothing.
 
@@ -150,7 +150,7 @@ Each skill points at a local clone of the upstream project as its source of trut
 }
 ```
 
-`paths.json` is **gitignored** — it holds machine-local paths. A fresh checkout ships with `null`s; the setup flow fills them in, and the skills stay portable untouched.
+`paths.json` is **gitignored** — it holds machine-local paths, so it is not part of a fresh clone; the setup flow creates it and fills in the values. The skills themselves never hardcode paths: if the file is missing (you installed the skills by copying folders only), just ask the user where their CUI clone is — or clone it.
 
 ## Installing the skills into an agent
 
@@ -177,7 +177,7 @@ Covered at every layer, because CUI ships real BiDi + OpenType shaping:
 ```
 cui-skills/
 ├── README.md            ← you are here
-├── paths.json           ← written by setup (gitignored)
+├── paths.json           ← written by setup (gitignored, not in a fresh clone)
 ├── commands/
 │   └── cui-setup.md     ← /cui-setup slash command
 ├── cui-app/

@@ -18,8 +18,9 @@ Your C code runs unchanged in the browser. **The component API, layout,
 theming, icons and app patterns are the `cui-app` skill's domain — read that
 first (`api.md`, `patterns.md`); this skill only covers the web layer.**
 
-Source of truth: a local clone of https://github.com/yappologistic/CUI —
-its absolute path is in `paths.json` at the repo root (written by setup).
+Source of truth: a local clone of https://github.com/yappologistic/CUI -
+setup records its absolute path in `paths.json` at the root of this skill
+suite; if that file is missing, ask the user where their CUI clone is.
 Key files inside the clone: `docs/getting-started.md` ("Run in the
 browser"), `web/README.md`, `web/tools/build.sh`.
 

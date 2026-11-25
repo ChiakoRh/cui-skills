@@ -22,9 +22,10 @@ components and token system, driven from Python through `ctypes` over a
 `cui-app`** — read that skill for component semantics and the CUI visual
 language; this skill covers the Python layer only.
 
-Source of truth: a local clone of https://github.com/x017/nexa — its
-absolute path is recorded in `paths.json` at the repo root (written by
-setup; clone it only for development — `pip install nexa-ui` suffices to
+Source of truth: a local clone of https://github.com/x017/nexa - setup
+records its absolute path in `paths.json` at the root of this skill suite;
+if that file is missing, ask the user where their nexa clone is (clone it
+only for development - `pip install nexa-ui` suffices to
 use the library). Docs in `docs/`, also at https://parsa.x017.ir/nexa/.
 
 ## Install (verified)

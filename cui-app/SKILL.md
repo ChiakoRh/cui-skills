@@ -24,8 +24,9 @@ for the browser — that is the `cui-web` skill (build/host layer only; this
 skill remains the reference for components, theming and patterns).
 
 Source of truth for details: a local clone of
-https://github.com/yappologistic/CUI — its absolute path is recorded in
-`paths.json` at the repo root (written by setup; clone it if `null`).
+https://github.com/yappologistic/CUI - setup records its absolute path in
+`paths.json` at the root of this skill suite; if that file is missing, ask
+the user where their CUI clone is (or clone it).
 Docs live in `docs/` inside the clone (also online at
 https://yappologistic.github.io/CUI/). This skill carries the
 working summary; go to the repo docs for the full page of any topic.
