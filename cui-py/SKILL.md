@@ -1,7 +1,7 @@
 ---
 name: cui-py
 description: >-
-  Build desktop UIs in Python with nexa (PyPI: nexa-ui), the official Python
+  Build desktop UIs in Python with nexa (PyPI: nexa-ui), the Python
   port of CUI: same 210+ components, same tokens, zero Python dependencies,
   value-returning immediate mode, OOP Application/Component/Router/Store,
   asyncio support, RTL/Persian shaping on by default, headless screenshot
@@ -14,7 +14,7 @@ description: >-
 # cui-py
 
 `nexa` (`pip install nexa-ui`, imported as `import nexa as ui`) is the
-official Python port of CUI by x017/Parsa Mohammadian: the same ~210
+Python port of CUI by x017/Parsa Mohammadian: the same ~210
 components and token system, driven from Python through `ctypes` over a
 ~1.1 MB C99 core (no runtime Python deps; ~48 ms warm import).
 
