@@ -4,6 +4,8 @@
 
 # cui-skills
 
+<p align="center"><b><a href="#setup">Install</a></b> · <a href="commands/cui-setup.md">/cui-setup</a> · <a href="#the-four-skills">Skills</a>: <a href="#cui-app--native-desktop-cc">cui-app</a> · <a href="#cui-web--webassembly-in-the-browser">cui-web</a> · <a href="#cui-py--desktop-apps-in-python-nexa">cui-py</a> · <a href="#cui-style--the-cui-look-in-plain-css">cui-style</a> · <a href="https://yappologistic.github.io/CUI/">CUI docs</a> · <a href="LICENSE">MIT</a></p>
+
 Four agent skills for building UIs with [CUI](https://github.com/yappologistic/CUI) — one visual language across **C**, **WebAssembly**, **Python** and **plain CSS**, written from real build and test sessions (Windows and Linux), not from reading docs alone.
 
 - **~210 native components** in C99, zero dependencies, ~250 KB apps — see `cui-app`
