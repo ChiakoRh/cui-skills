@@ -11,14 +11,18 @@ Context: `cui_create(cui_ctx_desc)` / `cui_destroy`, `cui_begin_frame` /
 `cui_end_frame`, `cui_viewport_size`, `cui_dpi_scale`, `cui_time`,
 `cui_delta_time`, `cui_needs_redraw`, `cui_request_redraw`.
 Input injection (custom platforms/tests): `cui_input_mouse_*`,
-`cui_input_scroll`, `cui_input_key`, `cui_input_text`, drag-drop via
+`cui_input_scroll`, `cui_input_key`, `cui_input_text`, touch (v1.5+):
+`cui_input_touch(ui, finger, down, x, y)` / `cui_input_touch_move` /
+`cui_input_touch_cancel` with queries `cui_touch_count/down/pressed/released/pos`,
+drag-drop via
 `cui_dropped_file*`. Clipboard: `cui_set_clipboard_text` /
 `cui_get_clipboard_text`. Keys: `cui_shortcut(mods, key)`,
 `cui_key_pressed`, `cui_key_down`, `cui_wants_keyboard` (false while a text
 field is focused). Input routing (custom event sources: a browser, a
 headless test): `cui_set_input_hook(ui, hook, user)` (intercept before the
-normal handler), `cui_dispatch_input(ui, event, route, user)` (deliver a
-`cui_input_event`; `route` decides which widget gets it), `cui_input_repeated`
+normal handler), `cui_dispatch_input(ui, event, route, user)` (deliver a `cui_input_event` —
+touch arrives as `CUI_INPUT_TOUCH`/`CUI_INPUT_TOUCH_MOVE` with `.finger`;
+`route` decides which widget gets it), `cui_input_repeated`
 (key is an auto-repeat), `cui_key_action_down(ui, key)` (held). Cursor over
 custom areas: `cui_set_cursor(ui, cui_cursor_*)`. Focus scope (modal-ish
 widgets that must not leak focus outside): `cui_push_focus_scope(ui, id,
@@ -62,6 +66,8 @@ Text effects: `cui_shimmer_text`, `cui_typewriter`, `cui_text_reveal`,
 `CUI_PX(240)`, `CUI_PCT(50)`; `min_/max_width`, `min_/max_height`.
 `cui_spacer`, `cui_gap(n)`, `cui_separator`, `cui_card { }`,
 `cui_scroll { }` (`.id`, `.fade_edges`, `.horizontal`), `cui_scroll_to`,
+`cui_scroll_reveal(scroll_id, row)` (v1.5 — keep a row in view with the
+least movement),
 `cui_split { }` (`.vertical`, `.min_first/.min_second`),
 `cui_virtual_list` for long lists, `cui_get_rect(id)` / `cui_last_rect`.
 
@@ -124,7 +130,8 @@ bool. `cui_sheet(title, &open, .side = CUI_SIDE_LEFT, .size)` (drawer),
 `cui_table(columns) { cui_table_row(selected) { cui_table_cell_text(...) } }`,
 `cui_data_grid` (editable cells: `cui_data_grid_cell_edit`),
 `cui_tree_table` (sortable via `cui_tree_sort`, move/reorder rows via
-`cui_tree_move`), `cui_kanban` (columns/cards
+`cui_tree_move`, right-click menu via `cui_tree_table_menu_begin(ui, id,
+&node)` / `cui_tree_table_menu_end`, v1.5), `cui_kanban` (columns/cards
 begin-end pairs; `cui_kanban_end` returns the move), `cui_filter_bar`,
 `cui_path_bar`, `cui_file_browser`, `cui_file_picker`,
 `cui_inspector` + `cui_prop_float/int/text/bool/enum/color/vec`,
@@ -193,7 +200,9 @@ Inside any container: `cui_draw_rect(_border/_gradient)`, `cui_draw_shadow`,
 `cui_push_clip`/`cui_pop_clip`. Stateful custom widgets: `cui_canvas(id, w,
 h, paint_fn, user)` + `cui_state(id, size)` (persists between frames) +
 `cui_canvas_ex(id, w, h, paint_fn, user, user_size, &opts)` (canvas with
-`cui_canvas_opts`) + `cui_animate(id, target)` / `cui_animate_spring`. Wheel input for custom
+`cui_canvas_opts`) + `cui_animate(id, target)` / `cui_animate_spring`.
+Frame arena for paint callbacks: `cui_frame_alloc(ui, n)` /
+`cui_frame_strdup(ui, s)` (valid until `cui_end_frame`). Wheel input for custom
 regions: `cui_wheel_region(ui, id, rect)` + `cui_wheel_take(ui, id, &delta)`
 (opt-in, so page scroll and canvas zoom coexist). Node editor:
 `cui_node_editor` + `cui_node_begin/end`, pins, `cui_node_link`, events for

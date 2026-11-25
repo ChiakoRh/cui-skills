@@ -83,7 +83,9 @@ cmake --build build --config Release -j  # build type goes here
 ```
 
 Which window backend/GPU renderer a build gets (`-DCUI_PLATFORM=`, `CUI_D3D12`
-etc., window position support per backend): `docs/platform.md`.
+etc., window position support per backend): `docs/platform.md`. v1.5 adds
+**experimental Android/iOS backends** (touch input: `cui_input_touch*` /
+`cui_touch_*`; see `docs/integration.md`).
 
 **MSVC pitfalls (hit in practice):**
 
