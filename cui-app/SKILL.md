@@ -81,6 +81,9 @@ cmake --build build --config Release -j  # build type goes here
 .\build\<app>.exe                        # VS layout: build\examples\Release\hello.exe
 ```
 
+Which window backend/GPU renderer a build gets (`-DCUI_PLATFORM=`, `CUI_D3D12`
+etc., window position support per backend): `docs/platform.md`.
+
 **MSVC pitfalls (hit in practice):**
 
 | Error | Cause | Fix |
