@@ -6,6 +6,8 @@
 
 <p align="center"><b><a href="#setup">Install</a></b> · <a href="commands/cui-setup.md">/cui-setup</a> · <a href="#the-four-skills">Skills</a>: <a href="#cui-app--native-desktop-cc">cui-app</a> · <a href="#cui-web--webassembly-in-the-browser">cui-web</a> · <a href="#cui-py--desktop-apps-in-python-nexa">cui-py</a> · <a href="#cui-style--the-cui-look-in-plain-css">cui-style</a> · <a href="https://yappologistic.github.io/CUI/">CUI docs</a> · <a href="LICENSE">MIT</a></p>
 
+<p align="center"><a href="https://skills.sh/ChiakoRh/cui-skills"><img src="https://skills.sh/b/ChiakoRh/cui-skills?style=flat-square" alt="skills.sh"></a> <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-f4c430?style=flat-square" alt="MIT license"></a></p>
+
 Four agent skills for building UIs with [CUI](https://github.com/yappologistic/CUI) — one visual language across **C**, **WebAssembly**, **Python** and **plain CSS**, written from real build and test sessions (Windows and Linux), not from reading docs alone.
 
 - **~210 native components** in C99, zero dependencies, ~250 KB apps — see `cui-app`
@@ -120,6 +122,12 @@ Two ways:
 1. **Slash command** — copy [`commands/cui-setup.md`](commands/cui-setup.md) into your agent's command directory (OpenCode: `~/.config/opencode/command/`), then run `/cui-setup`.
 2. **Ask your agent directly** — say "set up the CUI skills"; the flow below is written for agents to follow.
 
+Or, without an agent, the bundled setup script (checks tools, clones the projects, writes `paths.json`, installs the skills into detected agent directories):
+
+```sh
+npx github:ChiakoRh/cui-skills        # or: git clone … && node setup.mjs
+```
+
 ### The flow (for AI agents)
 
 1. **Ask which skill branch the user wants** (multiple is fine): `cui-app` (native C), `cui-web` (WASM), `cui-py` (Python), `cui-style` (CSS only).
@@ -179,6 +187,8 @@ Covered at every layer, because CUI ships real BiDi + OpenType shaping:
 ```
 cui-skills/
 ├── README.md            ← you are here
+├── setup.mjs            ← agent-less setup (npx github:ChiakoRh/cui-skills)
+├── package.json         ← makes the npx invocation work
 ├── paths.json           ← written by setup (gitignored, not in a fresh clone)
 ├── commands/
 │   └── cui-setup.md     ← /cui-setup slash command

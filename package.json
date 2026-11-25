@@ -1,0 +1,10 @@
+{
+  "name": "cui-skills",
+  "version": "1.0.0",
+  "description": "Setup for the CUI agent skill suite (cui-app / cui-web / cui-py / cui-style)",
+  "type": "module",
+  "bin": {
+    "cui-setup": "./setup.mjs"
+  },
+  "license": "MIT"
+}
