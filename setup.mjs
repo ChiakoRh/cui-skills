@@ -40,12 +40,12 @@ let cuiClone = null;
 if (needClone) {
   const def = join(homedir(), "Git", "CUI");
   const dest = await ask("CUI clone path", def);
-  if (existsSync(join(dest, "include", "cui.h"))) {
+  if (existsSync(join(dest, "include", "cui", "cui.h"))) {
     cuiClone = dest; console.log("CUI already cloned.");
   } else if (tools.git) {
     mkdirSync(dirname(dest), { recursive: true });
-    run(`git clone https://github.com/yappologistic/CUI.git "${dest}"`);
-    cuiClone = dest;
+    try { run(`git clone https://github.com/yappologistic/CUI.git "${dest}"`); cuiClone = dest; }
+    catch { console.log(`git clone failed for ${dest} - give a path that is (or can become) a CUI clone`); }
   } else console.log("git missing - clone manually: git clone https://github.com/yappologistic/CUI.git");
 }
 // nexa: pip install is enough for using the library; clone only for development
